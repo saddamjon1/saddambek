@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Age calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    width: 100vw;
+}
+
+.container {
+    width: 842px;
+    height: 651px;
+    background-color: white;
+    border-radius: 2rem 2rem 14rem 2rem;
+    padding: 3rem;
+    position: relative;
+    margin-top: 50px;
+}
+
+.inputs {
+    width: 634px;
+    display: flex;
+    justify-content: start;
+    gap: 3rem;
+}
+
+.inputEl {
+    display: flex;
+    flex-direction: column;
+    gap: .7rem;
+}
+
+.inputEl label {
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-family: inherit;
+    color: hsl(0, 1%, 44%);
+}
+
+.inputEl input {
+    border-radius: 5px;
+    padding: 15px 20px;
+    font-size: 25px;
+    max-width: 150px;
+    font-family: inherit;
+    border: 1px solid gray;
+}
+
+.error-message {
+    font-size: 10px;
+    color: red;
+}
+
+.line {
+    border: 1px solid hsl(0, 0%, 86%);
+    margin-top: 3rem;
+}
+
+.btn {
+    background: #874cfc;
+    border-radius: 50%;
+    width: 97px;
+    height: 97px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 165px;
+    right: 5%;
+    cursor: pointer;
+    border: none;
+    transition: .3s ease;
+}
+
+.btn:hover {
+    background-color: hsl(0, 0%, 8%);
+}
+
+.stats {
+    font-size: 40px;
+    margin-top: .5rem;
+    font-style: italic;
+}
+
+.stats span {
+    color: #874cfc;
+}
+
+footer {
+    font-size: 12px;
+    text-align: center;
+    bottom: 10px;
+}
+
+footer a {
+    color: red;
+}
+
+@media(max-width:878px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media(max-width:783px) {
+    .container {
+        padding: 3rem 10px;
+        height: auto;
+        border-radius: 2rem 2rem 8rem 2rem;
+    }
+
+    .inputs {
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .inputEl input {
+        padding: 10px 20px;
+        max-width: 200px;
+    }
+
+    .btn {
+        left: 50%;
+        top: 170px;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 70px;
+    }
+
+    .stats {
+        font-size: 25px;
+        margin-top: 2rem;
+    }
+}
+
+@media(max-width:400px) {
+    .container {
+        height: auto;
+    }
+
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputEl {
+        width: 100%;
+    }
+
+    .inputEl input {
+        min-width: 100%;
+    }
+
+    .btn {
+        top: 415px;
+    }
+
+    .stats {
+        font-size: 18px;
+        padding-top: 3rem;
+        padding-left: 1rem;
+    }
+
+    footer {
+        font-size: 8px;
+    }
+}
+
+h1:hover{
+  transition: steps(1.1);
+  color: blue;
+}
+.years:hover{
+  transition: steps(1.1);
+  color: rgb(23, 146, 68);
+}
+.months:hover{
+  transition: steps(1.1);
+  color: rgb(8, 197, 184);
+}
+.days:hover{
+  transition: steps(1.1);
+  color: rgb(25, 137, 56);
+}
+.inputs:hover{
+transition: steps(1.1);
+color: green;
+}
+.attribution{
+  margin-top: 200px;
+}
+  </style>
+
+<main class="container">
+  <div class="inputs">
+    <div class="inputEl">
+      <label for="input">Day</label>
+      <input id="inputDay" type="number" placeholder="DD">
+      <div class="error-message" id="errorDay"></div> 
+    </div>
+    <div class="inputEl">
+      <label for="input">Month</label>
+      <input id="inputMonth" type="number" placeholder="MM">
+      <div class="error-message" id="errorMonth"></div> 
+    </div>
+    <div class="inputEl">
+      <label for="input">Year</label>
+      <input id="inputYear" type="number" placeholder="YYYY">
+      <div class="error-message" id="errorYear"></div> 
+    </div>
+  </div>
+  <hr class="line">
+  <button class="btn"><img src="./assets/images/icon-arrow.svg" alt="icon"></button>
+  <div class="stats">
+    <h1><span class="years">-- </span>years</h1>
+    <h1><span class="months">-- </span>months</h1>
+    <h1><span class="days">-- </span>days</h1>
+  </div>
+</main>
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded with  by <a href="https://www.frontendmentor.io/profile/saddamjon1">saddanjon007</a>.
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    // Get references to HTML elements
+    const inputDay = document.getElementById("inputDay");
+    const inputMonth = document.getElementById("inputMonth");
+    const inputYear = document.getElementById("inputYear");
+    const btn = document.querySelector(".btn");
+    const yearsSpan = document.querySelector(".years");
+    const monthsSpan = document.querySelector(".months");
+    const daysSpan = document.querySelector(".days");
+    const errorDay = document.getElementById("errorDay"); 
+    const errorMonth = document.getElementById("errorMonth"); 
+    const errorYear = document.getElementById("errorYear"); 
+
+    btn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+     
+        clearErrorMessages();
+
+    
+        const day = parseInt(inputDay.value);
+        const month = parseInt(inputMonth.value);
+        const year = parseInt(inputYear.value);
+
+      
+        let isValid = true;
+
+        if (!isValidDate(day, month, year)) {
+            isValid = false;
+            if (day < 1 || day > 31) {
+                displayErrorMessage("Day must be between 1 and 31", errorDay);
+            }
+            if (month < 1 || month > 12) {
+                displayErrorMessage("Month must be between 1 and 12", errorMonth);
+            }
+            if (year < 1 || year > new Date().getFullYear()) {
+                displayErrorMessage(
+                    `Year must be between 1 and ${new Date().getFullYear()}`,
+                    errorYear
+                );
+            }
+            return;
+        }
+
+    
+        const currentDate = new Date();
+        const inputDate = new Date(year, month - 1, day); 
+        const age = calculateAge(currentDate, inputDate);
+
+       
+        animateAge(age);
+    });
+
+    function isValidDate(day, month, year) {
+        const currentDate = new Date();
+        const inputDate = new Date(year, month - 1, day); 
+        return (
+            inputDate instanceof Date &&
+            !isNaN(inputDate) &&
+            inputDate <= currentDate &&
+            day >= 1 &&
+            day <= 31 &&
+            month >= 1 &&
+            month <= 12 &&
+            year >= 1 &&
+            year <= new Date().getFullYear()
+        );
+    }
+
+    function calculateAge(currentDate, inputDate) {
+        let age = {};
+        let yearDiff = currentDate.getFullYear() - inputDate.getFullYear();
+        let monthDiff = currentDate.getMonth() - inputDate.getMonth();
+        let dayDiff = currentDate.getDate() - inputDate.getDate();
+
+        if (dayDiff < 0) {
+            monthDiff--;
+            dayDiff += daysInMonth(currentDate.getMonth(), currentDate.getFullYear());
+        }
+
+        if (monthDiff < 0) {
+            yearDiff--;
+            monthDiff += 12;
+        }
+
+        age.years = yearDiff;
+        age.months = monthDiff;
+        age.days = dayDiff;
+
+        return age;
+    }
+
+    function daysInMonth(month, year) {
+        return new Date(year, month + 1, 0).getDate();
+    }
+
+    function animateAge(age) {
+        let years = 0;
+        let months = 0;
+        let days = 0;
+        const interval = 1; 
+        const intervalId = setInterval(function () {
+            if (years < age.years) {
+                years++;
+                yearsSpan.textContent = years;
+            } else if (months < age.months) {
+                months++;
+                monthsSpan.textContent = months;
+            } else if (days < age.days) {
+                days++;
+                daysSpan.textContent = days;
+            } else {
+                clearInterval(intervalId);
+            }
+        }, interval);
+    }
+
+    function displayErrorMessage(message, errorElement) {
+        errorElement.textContent = message;
+        errorElement.style.display = "block";
+    }
+
+    function clearErrorMessages() {
+        const errorMessages = document.querySelectorAll(".error-message");
+        errorMessages.forEach((error) => {
+            error.textContent = "";
+            error.style.display = "none";
+        });
+    }
+});
+    </script>
+  </div>
+</body>
+</html>
